@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Search, Sparkles, BookOpen, ArrowUpRight } from "lucide-react";
-import { SectionTag, Tag } from "../ui/primitives";
+import { Search, BookOpen, ArrowUpRight } from "lucide-react";
+import { SectionTag } from "../ui/primitives";
 
 const KNOWLEDGE_CASES = [
   { id: "#204", query: "getaran cnc 04 vibration", solution: "Penggantian Bantalan 6204 menyelesaikan 85% masalah getaran berulang.", match: 94 },
-  { id: "#187", query: "tabrakan spindel collision", solution: "Kalibrasi ulang sumbu spindel dengan pemeriksaan dial gauge ganda.", match: 72 },
-  { id: "#098", query: "titik buta forklift blind spot", solution: "Pemasangan cermin cembung dan marka zebra kuning di lantai.", match: 65 },
+  { id: "#187", query: "tabrakan spindel collision", solution: "Kalibrasi ulang sumbu spindel dengan dial gauge ganda.", match: 72 },
+  { id: "#098", query: "titik buta forklift blind spot", solution: "Pemasangan cermin cembung dan marka zebra di lantai.", match: 65 },
 ];
 
 export default function AICopilot() {
@@ -19,33 +19,31 @@ export default function AICopilot() {
     : [];
 
   return (
-    <section className="space-y-3" aria-label="Kopilot Rekayasa AI">
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-        <SectionTag n="02">MESIN PENGETAHUAN</SectionTag>
-        <span className="mono-label text-[10px] text-ink-3">412 Kasus Terindeks</span>
+    <section className="space-y-2.5" aria-label="Kopilot Rekayasa AI">
+      <div className="flex items-center justify-between">
+        <SectionTag n="02">BASIS PENGETAHUAN</SectionTag>
+        <span className="mono-label text-[9.5px] text-ink-3">412 Kasus</span>
       </div>
 
-      <div className="rounded-xl border border-line bg-card p-4">
-        {/* Header Asisten */}
-        <div className="flex items-center justify-between border-b border-line pb-3">
+      <div className="rounded-xl border border-line bg-card p-4 transition hover:border-ink/20">
+        {/* Header Asisten — Classic Monochrome */}
+        <div className="flex items-center justify-between border-b border-line pb-2.5">
           <div className="flex items-center gap-2">
-            <span className="grid h-6 w-6 place-items-center rounded bg-ink text-white">
-              <Sparkles size={13} />
-            </span>
-            <span className="text-[13px] font-semibold text-ink">AI Engineering Copilot</span>
+            <span className="mono-label text-[10.5px] font-semibold text-ink">AI Copilot</span>
+            <span className="mono-label text-[9px] text-ink-3">• Riwayat Mesin</span>
           </div>
-          <span className="mono-label text-[10px] text-ink-3">Indeks v1.2</span>
+          <span className="mono-label text-[9px] text-ink-3">v1.2</span>
         </div>
 
-        {/* Input Pencarian */}
-        <div className="relative mt-3">
-          <Search size={15} className="absolute left-3 top-3 text-ink-3" />
+        {/* Input Pencarian Minimalis */}
+        <div className="relative mt-2.5">
+          <Search size={14} className="absolute left-3 top-2.5 text-ink-3" />
           <input
             id="ai-search-input"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Cari gejala kegagalan (misal: 'getaran tidak normal CNC 04')..."
-            className="h-10 w-full rounded-lg border border-line bg-canvas pl-9 pr-3 text-[12.5px] outline-none placeholder:text-ink-3 focus:border-ink"
+            placeholder="Cari gejala kerusakan (misal: 'getaran CNC 04')..."
+            className="h-9 w-full rounded-lg border border-line bg-canvas pl-8 pr-3 text-[12px] outline-none placeholder:text-ink-3 focus:border-ink"
           />
         </div>
 
@@ -53,36 +51,36 @@ export default function AICopilot() {
         {filtered.length > 0 && (
           <div className="mt-2 divide-y divide-line rounded-lg border border-line bg-canvas">
             {filtered.map((item) => (
-              <div key={item.id} className="p-2.5 text-[12px]">
-                <div className="flex items-center justify-between font-mono text-[10.5px]">
-                  <span className="font-semibold text-ink">Kasus {item.id}</span>
-                  <span className="text-ok-ink">{item.match}% kecocokan</span>
+              <div key={item.id} className="p-2 text-[11.5px]">
+                <div className="flex items-center justify-between font-mono text-[10px]">
+                  <span className="font-medium text-ink">Kasus {item.id}</span>
+                  <span className="text-ok-ink">{item.match}% cocok</span>
                 </div>
-                <p className="mt-1 text-ink-2">{item.solution}</p>
+                <p className="mt-0.5 text-ink-2">{item.solution}</p>
               </div>
             ))}
           </div>
         )}
 
-        {/* Rekomendasi Instan */}
-        <div className="mt-3 rounded-lg border border-line bg-canvas p-3">
+        {/* Rekomendasi Instan — Clean Document Excerpt */}
+        <div className="mt-2.5 rounded-lg border border-line bg-canvas p-2.5">
           <div className="flex items-center justify-between">
-            <span className="mono-label text-ink-3">SOLUSI REKOMENDASI</span>
-            <Tag tone="ok">85% Cocok</Tag>
+            <span className="mono-label text-[9px] text-ink-3">KASUS SERUPA #204</span>
+            <span className="mono-label text-[9px] text-ok-ink font-semibold">85% KECOCOKAN</span>
           </div>
-          <p className="mt-1.5 text-[12.5px] leading-snug text-ink">
-            <strong className="font-semibold">Kasus #204:</strong> Penggantian Bantalan <code className="font-mono text-ink">6204</code> menyelesaikan 85% getaran berulang pada unit CNC.
+          <p className="mt-1 text-[12px] leading-snug text-ink">
+            Penggantian Bantalan <span className="font-mono font-medium">6204</span> menyelesaikan 85% getaran berulang pada unit spindel CNC.
           </p>
         </div>
 
         {/* Tombol Pintasan */}
-        <div className="mt-3 flex gap-2">
-          <button className="tap mono-label flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-line text-[10.5px] text-ink-2 hover:text-ink">
-            <BookOpen size={13} /> Lihat SOP Bantalan
+        <div className="mt-2.5 flex gap-2">
+          <button className="tap mono-label flex h-8 flex-1 items-center justify-center gap-1.5 rounded-md border border-line text-[10px] text-ink-2 hover:border-ink hover:text-ink">
+            <BookOpen size={12} /> SOP Bantalan
           </button>
-          <button className="tap mono-label flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-line text-[10.5px] text-ink-2 hover:text-ink">
+          <button className="tap mono-label flex h-8 flex-1 items-center justify-center gap-1.5 rounded-md border border-line text-[10px] text-ink-2 hover:border-ink hover:text-ink">
             <span>Riwayat CNC 04</span>
-            <ArrowUpRight size={13} />
+            <ArrowUpRight size={12} />
           </button>
         </div>
       </div>
