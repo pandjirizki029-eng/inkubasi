@@ -3,7 +3,7 @@ import { User, Clock, Upload, CheckCircle2, ChevronRight } from "lucide-react";
 import { SectionTag } from "../ui/primitives";
 import { CASES } from "../../data/mock";
 
-export default function ActionFeed({ filter, onToast }) {
+export default function ActionFeed({ filter, onToast, onOpenCase }) {
   const [proofUploaded, setProofUploaded] = useState(false);
 
   const filteredCases = CASES.filter((c) => filter === "all" || c.category === filter);
@@ -93,13 +93,22 @@ export default function ActionFeed({ filter, onToast }) {
                         <CheckCircle2 size={14} /> Terverifikasi
                       </div>
                     ) : (
-                      <button
-                        id="upload-proof-btn"
-                        onClick={handleUpload}
-                        className="tap mono-label flex h-8 items-center gap-1.5 rounded-lg border border-line bg-ink px-2.5 text-[10px] font-medium text-white hover:bg-black"
-                      >
-                        <Upload size={12} /> Unggah Bukti
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <button
+                          id="upload-proof-btn"
+                          onClick={handleUpload}
+                          className="tap mono-label flex h-8 items-center gap-1.5 rounded-lg border border-line bg-canvas px-2.5 text-[10px] font-medium text-ink hover:border-ink"
+                        >
+                          <Upload size={12} /> Unggah Bukti
+                        </button>
+                        <button
+                          id="process-case-cnc04"
+                          onClick={() => onOpenCase?.("SL-0412", "A")}
+                          className="tap mono-label flex h-8 items-center gap-1.5 rounded-lg bg-ink px-3 text-[10px] font-bold text-white hover:bg-black"
+                        >
+                          Lihat Detail & Form <ChevronRight size={12} />
+                        </button>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -108,10 +117,12 @@ export default function ActionFeed({ filter, onToast }) {
           }
 
           /* Baris Kasus Ringkas — Classic Ledger Entry */
+          const mappedId = c.code === "FLT 02" ? "SL-0409" : c.code === "LN 04" ? "SL-0407" : c.code === "PRS 11" ? "SL-0405" : "SL-0412";
           return (
             <div
               key={c.id}
-              className="flex items-center justify-between rounded-xl border border-line bg-card p-3 transition hover:border-ink/20"
+              onClick={() => onOpenCase?.(mappedId, "A")}
+              className="tap flex cursor-pointer items-center justify-between rounded-xl border border-line bg-card p-3 transition hover:border-ink/50"
             >
               <div>
                 <div className="flex items-center gap-2">

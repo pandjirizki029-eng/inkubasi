@@ -3,20 +3,30 @@ import { ChevronDown, Check } from "lucide-react";
 import { PLANTS, FILTERS } from "../../data/mock";
 import { Logo } from "../ui/primitives";
 
-export default function DashboardHeader({ plant, setPlant, filter, setFilter, onLogo }) {
+export default function DashboardHeader({ plant, setPlant, filter, setFilter, onLogo, onOpenCases }) {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-canvas/95 backdrop-blur-md">
       {/* Bar Navigasi Atas — Classic Minimalist */}
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="flex h-14 items-center justify-between px-3">
         <button onClick={onLogo} className="tap text-left">
           <Logo />
         </button>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1">
+        <div className="flex items-center gap-1.5">
+          <button
+            id="hdr-btn-cases"
+            onClick={onOpenCases}
+            className="tap flex h-9 items-center gap-1.5 rounded-lg border-2 border-ink bg-card px-2.5 text-[12px] font-bold text-ink hover:bg-canvas"
+          >
+            <span>Kasus W2</span>
+            <span className="grid h-5 min-w-5 place-items-center rounded bg-ink px-1 font-mono text-[10px] text-white">
+              8
+            </span>
+          </button>
+          <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1">
             <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse-dot" />
-            <span className="mono-label text-[9.5px] text-ink-2">Shift B • ME Siaga</span>
+            <span className="mono-label text-[9.5px] text-ink-2">Shift B</span>
           </div>
         </div>
       </div>

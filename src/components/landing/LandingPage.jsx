@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  Menu, X, ArrowRight, ArrowUpRight
+  Menu, X
 } from "lucide-react";
 import { Tag, SectionTag, PillButton, RoundButton, Logo } from "../ui/primitives";
 

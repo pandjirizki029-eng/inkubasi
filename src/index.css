@@ -29,6 +29,13 @@
   --color-ok-ink: #047857;
   --color-ai-ink: #0e7490;
 
+  /* Week 2 — status "lampu indikator" (high contrast, solid fills) */
+  --color-info: #1e40af;      /* Biru tua  = Open */
+  --color-info-ink: #1e3a8a;
+  --color-warn: #ea580c;      /* Oranye    = Menunggu Verifikasi */
+  --color-warn-ink: #c2410c;
+  --color-done: #15803d;      /* Hijau     = Selesai / Verified */
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Inter Tight", "Inter", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
